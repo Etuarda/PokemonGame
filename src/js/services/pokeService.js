@@ -8,7 +8,24 @@ async function getPokemon(consulta) {
   if (res.status === 404) throw new Error("Pokémon não encontrado.");
   if (!res.ok) throw new Error("Erro ao buscar Pokémon.");
 
-  return res.json();
+  return mapPokemon(await res.json());
+}
+
+function mapPokemon(dados) {
+  const stats = Array.isArray(dados?.stats) ? dados.stats : [];
+  const total = stats.reduce((acc, s) => acc + (s?.base_stat ?? 0), 0);
+
+  const types = Array.isArray(dados?.types)
+    ? dados.types.map((t) => t?.type?.name).filter(Boolean)
+    : [];
+
+  return {
+    id: dados?.id ?? 0,
+    name: dados?.name ?? "desconhecido",
+    sprite: dados?.sprites?.front_default ?? null,
+    types,
+    stats: { total },
+  };
 }
 
 export const pokeService = { getPokemon };

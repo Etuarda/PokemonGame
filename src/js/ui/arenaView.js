@@ -20,12 +20,11 @@ function renderShell() {
   root.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const form = e.target;
-    if (!(form instanceof HTMLFormElement)) return;
+    const formEl = e.target;
+    if (!(formEl instanceof HTMLFormElement)) return;
 
-    const slot = form.getAttribute("data-slot");
-    const input = form.querySelector("input");
-    const consulta = (input?.value || "").trim();
+    const slot = formEl.getAttribute("data-slot");
+    const consulta = (formEl.querySelector("input")?.value || "").trim();
 
     if (!slot || !consulta) return;
     onBuscarPokemon?.({ slot, consulta });
@@ -34,7 +33,7 @@ function renderShell() {
 
 function render(estado) {
   ["player1", "player2", "player3", "player4"].forEach((slot) => {
-    const el = document.querySelector(`[data-slot="${slot}"]`);
+    const el = document.querySelector(`[data-slot-container="${slot}"]`);
     if (!el) return;
 
     const pokemon = estado?.players?.[slot];
@@ -99,7 +98,7 @@ function card(pokemon) {
   const total = pokemon?.stats?.total ?? 0;
 
   return `
-    <article class="card-final">
+    <article class="card-final" aria-label="Pokémon selecionado">
       <h3>${nome}</h3>
       <img src="${pokemon?.sprite || ""}" alt="Sprite do Pokémon ${nome}" />
       <p>TOTAL ${total}</p>

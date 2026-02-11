@@ -2,29 +2,21 @@ import { arenaView } from "./ui/arenaView.js";
 import { modalView } from "./ui/modalView.js";
 import { battleController } from "./controllers/battleController.js";
 
-/**
- * Entry point da aplicação.
- * Centraliza o wiring entre UI e Controller.
- */
-function iniciarApp() {
-  arenaView.init({
-    onBuscarPokemon: battleController.handleBuscarPokemon,
-  });
+arenaView.init({
+  onBuscarPokemon: battleController.handleBuscarPokemon,
+  onBatalhar: battleController.handleBatalhar,
+});
 
-  modalView.init({
-    onJogarNovamente: battleController.handleResetarDuelo,
-    onFechar: battleController.handleFecharModal,
-  });
+modalView.init({
+  onJogarNovamente: battleController.handleResetarDuelo,
+});
 
-  battleController.init({
-    onAtualizarUI: arenaView.render,
-    onAbrirModal: modalView.open,
-    onAtualizarBotao: arenaView.renderBotaoBatalhar,
-    onToast: arenaView.toast,
-  });
+battleController.init({
+  onAtualizarUI: arenaView.render,
+  onAbrirModal: modalView.open,
+  onAtualizarBotao: arenaView.renderBotaoBatalhar,
+  onToast: arenaView.toast,
+});
 
-  arenaView.renderShell();
-  arenaView.renderBotaoBatalhar(false);
-}
-
-iniciarApp();
+arenaView.renderShell();
+arenaView.renderBotaoBatalhar(false);

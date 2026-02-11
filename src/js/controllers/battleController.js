@@ -19,15 +19,20 @@ async function handleBuscarPokemon({ slot, consulta }) {
   syncUI();
 
   try {
-    duelState.setPokemon(slot, await pokeService.getPokemon(consulta));
+    const pokemon = await pokeService.getPokemon(consulta);
+    duelState.setPokemon(slot, pokemon);
   } catch (e) {
-    duelState.setPokemon(slot, null);
     const msg = e?.message || "Erro inesperado.";
+    duelState.setPokemon(slot, null);
     duelState.setErro(slot, msg);
     ui.onToast?.({ mensagem: msg, tipo: "erro" });
   } finally {
     duelState.setCarregando(slot, false);
-    duelState.setStatus(duelState.podeBatalhar() ? duelState.STATUS.READY : duelState.STATUS.IDLE);
+    duelState.setStatus(
+      duelState.podeBatalhar()
+        ? duelState.STATUS.READY
+        : duelState.STATUS.IDLE
+    );
     syncUI();
   }
 }
@@ -36,15 +41,19 @@ function handleBatalhar() {
   if (!duelState.podeBatalhar()) return;
 
   const { players } = duelState.getEstado();
-  const p1 = (players.player1?.stats?.total ?? 0) + (players.player2?.stats?.total ?? 0);
-  const p2 = (players.player3?.stats?.total ?? 0) + (players.player4?.stats?.total ?? 0);
+
+  const total = (a, b) =>
+    (a?.stats?.total ?? 0) + (b?.stats?.total ?? 0);
+
+  const p1 = total(players.player1, players.player2);
+  const p2 = total(players.player3, players.player4);
 
   duelState.setResultado({
     vencedor: p1 === p2 ? "empate" : p1 > p2 ? "jogador1" : "jogador2",
     pontos: { jogador1: p1, jogador2: p2 },
   });
-  duelState.setStatus(duelState.STATUS.FINISHED);
 
+  duelState.setStatus(duelState.STATUS.FINISHED);
   syncUI();
   ui.onAbrirModal?.(duelState.getEstado().resultado);
 }

@@ -1,9 +1,7 @@
 let onJogarNovamente = null;
-let onFechar = null;
 
 function init(cb) {
   onJogarNovamente = cb?.onJogarNovamente || null;
-  onFechar = cb?.onFechar || null;
 }
 
 function open(resultado) {
@@ -24,11 +22,6 @@ function open(resultado) {
       <h2 class="win-title">${titulo}</h2>
       <div class="win-score">${(pontos?.jogador1 ?? 0)} x ${(pontos?.jogador2 ?? 0)}</div>
 
-      <div class="modal-details">
-        <div class="detail-row"><span>Jogador 1</span><strong>${pontos?.jogador1 ?? 0}</strong></div>
-        <div class="detail-row"><span>Jogador 2</span><strong>${pontos?.jogador2 ?? 0}</strong></div>
-      </div>
-
       <div class="modal-actions">
         <button id="btn-fechar-modal" class="btn-ghost" type="button">Fechar</button>
         <button id="btn-jogar-novamente" class="btn-commander is-visible" type="button">Jogar novamente</button>
@@ -45,18 +38,12 @@ function open(resultado) {
   root.addEventListener(
     "click",
     (e) => {
-      if (e.target === root) {
-        fechar();
-        onFechar?.();
-      }
+      if (e.target === root) fechar();
     },
     { once: true }
   );
 
-  root.querySelector("#btn-fechar-modal")?.addEventListener("click", () => {
-    fechar();
-    onFechar?.();
-  });
+  root.querySelector("#btn-fechar-modal")?.addEventListener("click", fechar);
 
   root.querySelector("#btn-jogar-novamente")?.addEventListener("click", () => {
     fechar();
