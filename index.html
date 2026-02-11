@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Pokémon - Batalha de cartas</title>
+
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="page-header" aria-label="Cabeçalho do simulador">
+      <h1 class="page-title">Pokémon - Batalha de cartas</h1>
+      <p class="page-subtitle">Escolha 2 Pokémon por jogador e batalhe.</p>
+    </header>
+
+    <main id="conteudo">
+      <section class="duel-arena" aria-label="Arena de batalha">
+        <div id="arena-root"></div>
+      </section>
+
+      <section class="actions-hub" aria-label="Ações da batalha">
+        <button id="btn-batalhar" class="btn-commander" type="button" disabled>
+          BATALHAR
+        </button>
+        <p class="actions-hint" id="hint-batalha">Preencha os 4 slots para liberar a batalha.</p>
+      </section>
+    </main>
+
+    <footer class="page-footer" aria-label="Rodapé">
+      <small>Programadores do Amanhã - MV3</small>
+    </footer>
+
+    <div id="modal-root" class="modal-overlay" aria-hidden="true"></div>
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>
