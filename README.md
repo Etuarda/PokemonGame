@@ -2,11 +2,6 @@
 
 Base pronta para o time desenvolver os **Mini‑MVPs** (HTML/CSS/JS) em paralelo, com arquitetura em camadas.
 
-## Rodar local
-- Abra `src/index.html` no navegador **ou**
-- Use um servidor local (recomendado):
-  - VS Code: Live Server
-  - `python -m http.server` na raiz do projeto
 
 ## Camadas (contrato)
 - `ui/`: DOM + render + eventos
