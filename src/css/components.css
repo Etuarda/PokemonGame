@@ -223,6 +223,7 @@
   animation: spin 1s linear infinite;
 }
 
+/* único spin (serve para .spinner e .loading) */
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -236,8 +237,10 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
+/* pulse do texto (loading) */
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -350,6 +353,7 @@
 .btn-ghost:active {
   transform: translateY(0);
 }
+
 .loading {
   display: inline-block;
   width: 20px;
@@ -360,11 +364,6 @@
   animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
 .input-group::after {
   content: '⚪';
   font-size: 3rem;
@@ -372,8 +371,8 @@
   margin-top: var(--spacing-md);
 }
 
-/* Animação de hover para cards */
-@keyframes pulse {
+/* Animação de hover para cards (não pode usar o mesmo nome "pulse") */
+@keyframes pulseHover {
   0%,
   100% {
     opacity: 1;
@@ -384,7 +383,7 @@
 }
 
 .card-final img:hover {
-  animation: pulse 0.5s ease-in-out;
+  animation: pulseHover 0.5s ease-in-out;
 }
 
 /* ---- Modal de resultado da batalha ---- */
@@ -399,8 +398,14 @@
 }
 
 @keyframes iconBounce {
-  from { transform: scale(0); opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .resultado-subtitulo {

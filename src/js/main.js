@@ -15,10 +15,11 @@ modalView.init({
   onJogarNovamente: battleController.handleResetarDuelo,
 });
 
-// render base
+// primeiro renderiza a estrutura estática (slots vazios)
 arenaView.renderShell();
 arenaView.renderBotaoBatalhar(false);
 
+// depois inicializa o controller que vai sincronizar o estado e preencher os slots
 battleController.init({
   onAtualizarUI: arenaView.render,
   onAtualizarBotao: arenaView.renderBotaoBatalhar,
