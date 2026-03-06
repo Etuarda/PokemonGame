@@ -1,281 +1,276 @@
-Pokémon Card Battle
+````md
+# 🎴 Pokémon Card Battle
 
-Um jogo web inspirado nos duelos de cartas colecionáveis dos anos 2000, onde cada jogador seleciona cartas Pokémon e disputa uma batalha baseada em atributos extraídos da PokéAPI.
+Um jogo web inspirado nos **duelos de cartas colecionáveis dos anos 2000**, onde cada jogador seleciona cartas Pokémon e disputa uma batalha baseada em atributos extraídos da **PokéAPI**.
 
-O objetivo do projeto é demonstrar integração com API externa, arquitetura modular em JavaScript e organização de frontend em camadas, simulando a estrutura utilizada em aplicações profissionais.
+O objetivo do projeto é demonstrar **integração com API externa**, **arquitetura modular em JavaScript** e **organização do frontend em camadas**, simulando a estrutura utilizada em aplicações profissionais.
 
-O sistema consome dados reais da API Pokémon, transforma esses dados em atributos de batalha e executa um motor de comparação para determinar o vencedor.
+O sistema consome dados reais da API Pokémon, transforma esses dados em atributos de batalha e executa um **motor de comparação** para determinar o vencedor.
 
-Demonstração
+---
 
-Fluxo do jogo:
+# 🎮 Demonstração
 
-O usuário seleciona dois Pokémon
+### Fluxo do jogo
 
-Cada Pokémon representa uma carta de batalha
+1. O usuário seleciona dois Pokémon  
+2. Cada Pokémon representa uma carta de batalha  
+3. Os atributos são carregados da API  
+4. O motor de batalha compara os valores  
+5. O sistema determina o vencedor da rodada  
 
-Os atributos são carregados da API
+A lógica foi pensada para reproduzir a sensação dos **duelos de cartas clássicos**, onde cada carta possui atributos que determinam o resultado da disputa.
 
-O motor de batalha compara os valores
+---
 
-O sistema determina o vencedor da rodada
-
-A lógica foi pensada para reproduzir a sensação dos duelos de cartas clássicos, onde cada carta possui atributos que determinam o resultado da disputa.
-
-Objetivos do Projeto
+# 🎯 Objetivos do Projeto
 
 Este projeto foi desenvolvido com foco em:
 
-Consumo de API REST externa
+- Consumo de **API REST externa**
+- Separação de responsabilidades no frontend
+- Organização de código em **camadas**
+- Estrutura escalável para aplicações JavaScript
+- Simulação de lógica de **regra de negócio**
+- Experiência interativa baseada em **dados dinâmicos**
 
-Separação de responsabilidades no frontend
+Também foi pensado como um exercício de **arquitetura frontend profissional**, separando claramente:
 
-Organização de código em camadas
+- Interface
+- Lógica de controle
+- Serviços externos
 
-Estrutura escalável para aplicações JavaScript
+---
 
-Simulação de uma lógica de regra de negócio
+# 🧱 Arquitetura Adotada
 
-Experiência interativa baseada em dados dinâmicos
+O projeto utiliza **arquitetura em camadas no frontend**, com separação explícita de responsabilidades, garantindo:
 
-Também foi pensado como um exercício de arquitetura frontend profissional, separando claramente:
+- Manutenibilidade
+- Previsibilidade
+- Organização profissional do código
 
-interface
+## Camadas
 
-lógica de controle
-
-serviços externos
-
-Tecnologias Utilizadas
-Linguagens
-
-JavaScript
-
-HTML5
-
-CSS3
-
-API
-
-PokéAPI
-https://pokeapi.co
-
-Ferramentas
-
-Node.js (servidor local)
-
-Fetch API
-
-Modularização ES Modules
-
-Arquitetura do Projeto
-
-O projeto segue uma arquitetura modular inspirada em padrões utilizados em aplicações modernas.
-
-src
-│
-├── js
-│   ├── controllers
-│   │   └── battleController.js
-│   │
-│   ├── services
-│   │   ├── pokeService.js
-│   │   ├── typeService.js
-│   │   ├── battleService.js
-│   │   └── battleEngine.js
-│   │
-│   ├── ui
-│   │   ├── arenaView.js
-│   │   ├── battleView.js
-│   │   ├── modalView.js
-│   │   └── slotManager.js
-│   │
-│   └── main.js
-│
-└── css
-    ├── base.css
-    ├── components.css
-    ├── battle.css
-    ├── layout.css
-    └── responsive.css
-Camadas da Aplicação
-UI Layer
-
-Responsável pela interface e interação com o usuário.
-
-Arquivos:
-
-arenaView.js
-
-battleView.js
-
-modalView.js
-
-slotManager.js
-
-Responsabilidades:
-
-renderizar componentes
-
-atualizar DOM
-
-mostrar resultados da batalha
-
-gerenciar modais e slots de cartas
-
-Controller Layer
-
-Responsável por coordenar o fluxo da aplicação.
-
-Arquivo:
-
-battleController.js
-
-Funções:
-
-iniciar batalhas
-
-coletar cartas selecionadas
-
-chamar o motor de batalha
-
-enviar resultado para a interface
-
-Service Layer
-
-Responsável pela lógica e comunicação com APIs externas.
-
-Arquivos:
-
-pokeService.js
-typeService.js
-battleService.js
-battleEngine.js
-
-Funções:
-
-pokeService
-
-Comunicação com a PokéAPI
-
-buscar dados de Pokémon
-
-transformar resposta da API em estrutura utilizável
-
-typeService
-
-Gerencia interações entre tipos de Pokémon.
-
-Exemplo:
-
-fogo > planta
-
-água > fogo
-
-Permite adicionar regras de vantagem estratégica.
-
-battleEngine
-
-Motor principal da batalha.
-
+### UI
 Responsável por:
 
-calcular atributos
+- Renderização
+- Manipulação do DOM
+- Eventos da interface
 
-comparar cartas
+### Services
+Responsável por:
 
-determinar vencedor
+- Comunicação com a **PokéAPI**
+- Normalização dos dados recebidos
 
-battleService
+### Domain (Controller)
+Responsável por:
 
-Orquestra o fluxo da batalha entre:
+- Regras de negócio
+- Orquestração do fluxo de batalha
 
-dados da API
+### State
+Responsável por:
 
-motor de batalha
+- Fonte única da verdade da aplicação
 
-controller
+### Utils
+Responsável por:
 
-Fluxo de Execução
+- Funções puras reutilizáveis
+- Sem dependência de DOM
 
-Fluxo simplificado da aplicação:
+---
 
-Usuário seleciona Pokémon
-        ↓
-slotManager registra seleção
-        ↓
-battleController inicia batalha
-        ↓
-pokeService busca dados da API
-        ↓
-battleEngine calcula resultado
-        ↓
-battleView exibe vencedor
-Estrutura Visual
+# 📁 Estrutura do Projeto
 
-A interface foi pensada para remeter aos jogos de cartas clássicos.
+```txt
+index.html
 
-Componentes principais:
+src/
+ ├── css/
+ │   ├── base.css
+ │   ├── layout.css
+ │   ├── components.css
+ │   └── responsive.css
+ │
+ └── js/
+     ├── controllers/
+     │   └── battleController.js
+     │
+     ├── services/
+     │   ├── pokeService.js
+     │   └── typeService.js
+     │
+     ├── state/
+     │   └── duelState.js
+     │
+     ├── ui/
+     │   ├── arenaView.js
+     │   └── modalView.js
+     │
+     └── main.js
+````
 
-área de seleção de cartas
+---
 
-arena de batalha
+# ⚖️ Regras de Arquitetura
 
-resultado da rodada
+Para manter o sistema previsível, algumas regras foram definidas:
 
-modais de seleção de Pokémon
+1. **UI nunca importa services diretamente**
+2. **Services nunca manipulam DOM**
+3. **State não conhece a UI**
 
-O layout foi construído para ser responsivo e modular, permitindo expansão futura.
+Essas regras evitam **acoplamento entre camadas**.
 
-Como Executar o Projeto
-1. Clonar o repositório
+---
+
+# 📦 Contrato Oficial de Dados
+
+Nenhuma camada fora de `services/` pode consumir o retorno bruto da API.
+
+Isso evita dependência direta do formato da API externa.
+
+## Objeto Pokémon Normalizado
+
+```json
+{
+  "id": number,
+  "name": string,
+  "sprite": string | null,
+  "types": ["string"],
+  "stats": {
+    "total": number
+  }
+}
+```
+
+---
+
+# 🧠 Estrutura do Estado
+
+O **duelState** é a única fonte de verdade da aplicação.
+
+```javascript
+{
+  players: {
+    player1: Pokemon | null,
+    player2: Pokemon | null,
+    player3: Pokemon | null,
+    player4: Pokemon | null
+  },
+  status: 'idle' | 'ready' | 'battling' | 'finished'
+}
+```
+
+A interface apenas **reflete o estado atual**.
+
+---
+
+# 🧩 Divisão dos Mini-MVPs
+
+| MVP | Responsável | Entrega            | Critério                   |
+| --- | ----------- | ------------------ | -------------------------- |
+| A   | Cael        | Arena + Layout     | Shell responsivo funcional |
+| B   | Maxine      | Slot UI            | Estados idle/loading/error |
+| C   | Samuel      | Integração PokéAPI | Dados normalizados         |
+| D   | Jeferson    | Battle Engine      | Cálculo de score           |
+| E   | Thayane     | Modal + Reset      | Reinício do estado         |
+
+**Eduarda**
+
+* Boilerplate do projeto
+* Revisão técnica
+
+
+
+# ✅ Definition of Done
+
+O projeto é considerado completo quando:
+
+* Fluxo completo funcional
+  `4 Pokémon → batalha → reset`
+
+* Código limpo sem logs
+
+* Responsivo entre **360px e 1024px**
+
+* Acessibilidade aplicada
+
+  * Navegação por teclado
+  * ARIA
+  * VLibras
+
+---
+
+# 🚀 Como Executar
+
+### 1️⃣ Clonar o repositório
+
+```bash
 git clone https://github.com/seu-usuario/pokemon-card-battle.git
-2. Entrar na pasta
+```
+
+### 2️⃣ Entrar na pasta
+
+```bash
 cd pokemon-card-battle
-3. Instalar dependências (se houver)
+```
+
+### 3️⃣ Instalar dependências
+
+```bash
 npm install
-4. Executar servidor local
+```
 
-Caso esteja usando Node:
+### 4️⃣ Executar servidor
 
+```bash
 node server.js
+```
 
-Ou com extensão Live Server no VSCode.
+ou utilize **Live Server** no VSCode.
 
-5. Abrir no navegador
+### 5️⃣ Abrir no navegador
+
+```
 http://localhost:3000
-Melhorias Futuras
+```
+
+---
+
+# 🔮 Melhorias Futuras
 
 Possíveis evoluções do projeto:
 
-sistema de pontos por rodada
+* Sistema de pontuação por rodada
+* Ranking de jogadores
+* Animações de batalha
+* Sistema de decks
+* Persistência de partidas
+* Multiplayer
 
-múltiplas batalhas em sequência
+---
 
-ranking de jogadores
+# 📚 Aprendizados Técnicos
 
-animações de batalha
+Durante o desenvolvimento foram praticados conceitos como:
 
-sistema de decks
+* Consumo de **APIs REST**
+* **Modularização em JavaScript**
+* **Arquitetura em camadas**
+* **Separação de responsabilidades**
+* **Manipulação dinâmica do DOM**
+* **Organização de estado da aplicação**
 
-persistência de partidas
+---
 
-modo multiplayer
+# 📌 Nota
 
-Aprendizados Técnicos
+Este projeto foi desenvolvido para **fins educacionais e demonstrativos**, com foco em boas práticas de arquitetura frontend.
 
-Durante o desenvolvimento deste projeto foram praticados conceitos importantes como:
-
-consumo de APIs REST
-
-modularização em JavaScript
-
-organização de código em camadas
-
-separação de responsabilidades
-
-estruturação de lógica de negócio
-
-manipulação dinâmica do DOM
-
-Alteração 
+```
+```
